@@ -1,78 +1,14 @@
 "use client";
-import React, { Fragment } from "react";
+import { PlantList } from "@/app/assets/SVGCollection";
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
-  Divider,
+  CardHeader,
   Link,
-  Image,
-  Progress,
 } from "@nextui-org/react";
-import { Zap } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { DailyYieldIcon, PlantList } from "@/app/assets/SVGCollection";
-
-// const plants = [
-//   {
-//     name: "Greenbase Solution (MIMOS)",
-//     location: "Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
-//     status: "success",
-//     value: 1,
-//     max: 1,
-//   },
-//   // {
-//   //   name: "Plant 2",
-//   //   location: "Kedah",
-//   //   status: "success",
-//   //   value: 1,
-//   //   max: 1,
-//   // },
-//   // {
-//   //   name: "Plant C",
-//   //   location: "Kuala Siput, Johor",
-//   //   status: "warning",
-//   //   value: 5,
-//   //   max: 10,
-//   // },
-// ];
-
-const CardItem = ({ data }: { data: any }) => {
-  const percentage = (data.value / data.max) * 100 || undefined;
-
-  return (
-    <Card shadow="none" className="border-2 border-dashed">
-      <CardHeader className="space-x-3">
-        <Zap />
-        <div>
-          <p className="font-semibold text-sm">{data.name}</p>
-          <p className="text-sm font-medium text-foreground-400">
-            {data.location}
-          </p>
-        </div>
-      </CardHeader>
-
-      <CardBody>
-        <Progress
-          aria-label="Loading..."
-          label={`${data.value}/${data.max}`}
-          color={data.status}
-          showValueLabel
-          value={percentage}
-          classNames={{
-            label: "font-semibold text-sm",
-            value: "font-semibold text-sm text-foreground-400",
-          }}
-          className="max-w-full"
-        />
-      </CardBody>
-
-      <CardFooter></CardFooter>
-    </Card>
-  );
-};
 
 interface PlantListCardProps {
   location: string;
