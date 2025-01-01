@@ -72,6 +72,7 @@ export const NotificationsDropdown = () => {
                 base: "py-2",
                 title: "text-base font-semibold",
               }}
+              key="0"
             >
               Empty
             </DropdownItem>
