@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "cross-env NODE_OPTIONS='--dns-result-order=ipv4first' next start",
+    "start": "next start",
     "lint": "next lint",
     "migration:generate": "drizzle-kit generate:pg",
     "migration:push": "node -r esbuild-register src/db/migrate.ts",
