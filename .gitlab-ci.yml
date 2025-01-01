@@ -1,0 +1,95 @@
+stages:
+  - publish
+  - deploy
+
+variables:
+  REGISTRY: registry.gitlab.com
+  IMAGE_NAME: $CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+
+# Staging
+publish_staging:
+  environment: staging
+  image: docker
+  stage: publish
+  only:
+    - master
+  services:
+    - docker:dind
+  before_script:
+    - echo $PAT | docker login $REGISTRY -u $GITLAB_USER_LOGIN --password-stdin
+    - echo 'DATABASE_URL='$DATABASE_URL >> .env
+    - echo 'TIMESCALE_DB_URL='$TIMESCALE_DB_URL >> .env
+    - echo 'WEATHER_API_KEY='$WEATHER_API_KEY >> .env
+    - echo 'NEXT_PUBLIC_SUPABASE_URL='$NEXT_PUBLIC_SUPABASE_URL >> .env
+    - echo 'NEXT_PUBLIC_SUPABASE_ANON_KEY='$NEXT_PUBLIC_SUPABASE_ANON_KEY >> .env
+    - echo 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY='$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY >> .env
+    - echo 'SUPABASE_SERVICE_ROLE_KEY='$SUPABASE_SERVICE_ROLE_KEY >> .env
+    - echo 'SMTP_HOST='$SMTP_HOST >> .env
+    - echo 'SMTP_PORT='$SMTP_PORT >> .env
+    - echo 'SMTP_USER='$SMTP_USER >> .env
+    - echo 'SMTP_PASS='$SMTP_PASS >> .env
+    - echo 'SMTP_SENDER_NAME='$SMTP_SENDER_NAME >> .env
+  script:
+    - docker build . --tag $REGISTRY/$IMAGE_NAME:staging
+    - docker push $REGISTRY/$IMAGE_NAME:staging
+
+deploy_staging:
+  environment: staging
+  image: ubuntu:latest
+  stage: deploy
+  only:
+    - master
+  before_script:
+    - apt-get -yq update
+    - apt-get -yqq install ssh
+    - install -m 600 -D /dev/null ~/.ssh/id_rsa
+    - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+    - ssh-keyscan -H $SSH_HOST > ~/.ssh/known_hosts
+  script:
+    - |
+      ssh $SSH_USER@$SSH_HOST << END_TEXT 
+      cd $WORK_DIR
+      rm .env
+      echo 'DATABASE_URL='$DATABASE_URL >> .env
+      echo 'TIMESCALE_DB_URL='$TIMESCALE_DB_URL >> .env
+      echo 'WEATHER_API_KEY='$WEATHER_API_KEY >> .env
+      echo 'NEXT_PUBLIC_SUPABASE_URL='$NEXT_PUBLIC_SUPABASE_URL >> .env
+      echo 'NEXT_PUBLIC_SUPABASE_ANON_KEY='$NEXT_PUBLIC_SUPABASE_ANON_KEY >> .env
+      echo 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY='$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY >> .env
+      echo 'SUPABASE_SERVICE_ROLE_KEY='$SUPABASE_SERVICE_ROLE_KEY >> .env
+      echo 'SMTP_HOST='$SMTP_HOST >> .env
+      echo 'SMTP_PORT='$SMTP_PORT >> .env
+      echo 'SMTP_USER='$SMTP_USER >> .env
+      echo 'SMTP_PASS='$SMTP_PASS >> .env
+      echo 'SMTP_SENDER_NAME='$SMTP_SENDER_NAME >> .env
+      echo $PAT | docker login $REGISTRY -u $GITLAB_USER_LOGIN --password-stdin && docker compose pull && docker compose up -d && exit
+      END_TEXT
+  after_script:
+    - rm -rf ~/.ssh
+
+# Production
+publish_production:
+  environment: production
+  image: docker
+  stage: publish
+  only:
+    - production
+  services:
+    - docker:dind
+  before_script:
+    - echo $PAT | docker login $REGISTRY -u $GITLAB_USER_LOGIN --password-stdin
+    - echo 'DATABASE_URL='$DATABASE_URL >> .env
+    - echo 'TIMESCALE_DB_URL='$TIMESCALE_DB_URL >> .env
+    - echo 'WEATHER_API_KEY='$WEATHER_API_KEY >> .env
+    - echo 'NEXT_PUBLIC_SUPABASE_URL='$NEXT_PUBLIC_SUPABASE_URL >> .env
+    - echo 'NEXT_PUBLIC_SUPABASE_ANON_KEY='$NEXT_PUBLIC_SUPABASE_ANON_KEY >> .env
+    - echo 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY='$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY >> .env
+    - echo 'SUPABASE_SERVICE_ROLE_KEY='$SUPABASE_SERVICE_ROLE_KEY >> .env
+    - echo 'SMTP_HOST='$SMTP_HOST >> .env
+    - echo 'SMTP_PORT='$SMTP_PORT >> .env
+    - echo 'SMTP_USER='$SMTP_USER >> .env
+    - echo 'SMTP_PASS='$SMTP_PASS >> .env
+    - echo 'SMTP_SENDER_NAME='$SMTP_SENDER_NAME >> .env
+  script:
+    - docker build . --tag $REGISTRY/$IMAGE_NAME:production
+    - docker push $REGISTRY/$IMAGE_NAME:production

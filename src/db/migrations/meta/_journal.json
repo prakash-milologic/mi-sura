@@ -1,0 +1,48 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1723004947360,
+      "tag": "0000_flaky_black_panther",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1723005057305,
+      "tag": "0001_fuzzy_lethal_legion",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1724222554387,
+      "tag": "0002_narrow_warbound",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1729144372164,
+      "tag": "0003_supreme_blindfold",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1729144692054,
+      "tag": "0004_colorful_leo",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1729144759675,
+      "tag": "0005_lovely_unus",
+      "breakpoints": true
+    }
+  ]
+}
