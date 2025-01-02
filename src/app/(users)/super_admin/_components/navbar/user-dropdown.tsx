@@ -13,7 +13,7 @@ import readUserSession from "@/lib/actions";
 import { DownArrow } from "@/app/assets/SVGCollection";
 import Image from "next/image";
 
-export const UserDropdown = () => {
+export const UserDropdown = ({isDashboard=false}:{isDashboard:boolean}) => {
   const [userEmail, setUserEmail] = useState("");
 
   const onLogout = async () => {
@@ -39,7 +39,7 @@ export const UserDropdown = () => {
             <div className="flex gap-4">
               <Image src="/profile.png" alt="profile" width={40} height={40} />
               <div className="flex flex-col"> 
-                <p className="text-sm font-semibold dark:text-white">Rishi Blavin</p>
+                <p className={`text-sm font-semibold dark:text-white ${isDashboard && "text-black"}`}>Rishi Blavin</p>
                 <p className="text-xs font-medium text-[#686868] dark:text-[#FFFFFFCC]">super@gmail.com</p>
               </div>
             </div>

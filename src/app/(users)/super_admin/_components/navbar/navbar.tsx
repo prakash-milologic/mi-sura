@@ -2,12 +2,13 @@ import React from "react";
 import { Navbar, NavbarContent } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
-import { CloudAndSun, SunOnly } from "@/app/assets/SVGCollection";
+import { CloudAndSun, Hamburger, SunOnly } from "@/app/assets/SVGCollection";
 import { BurguerButton } from "./burguer-button";
 import { NotificationsDropdown } from "./notifications-dropdown";
 import { UserDropdown } from "./user-dropdown";
 import { ModeToggle } from "./mode-toggle";
-
+import "./navbar.styles.css"
+import { useSidebarContext } from "../layout/layout-context";
 interface Props {
   children: React.ReactNode;
 }
@@ -22,7 +23,7 @@ export const NavbarWrapper = ({ children }: Props) => {
   const { theme, resolvedTheme } = useTheme(); // Use resolvedTheme for fallback
   const pathname = usePathname();
   const lastPath = capitalizeFirstLetter(pathname.split("/").pop() as string);
-
+ const {  setCollapsed } = useSidebarContext();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -44,9 +45,6 @@ export const NavbarWrapper = ({ children }: Props) => {
   const isLightTheme = (theme || resolvedTheme) === "light";
 
   const navbarStyles = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
     paddingTop: "32px",
     paddingLeft: "32px",
     paddingRight: "32px",
@@ -70,23 +68,23 @@ export const NavbarWrapper = ({ children }: Props) => {
   return (
     <div className="relative flex flex-col flex-1">
       <Navbar
-      className="w-full"
+      className="w-full navbar-container-wrapper"
       classNames={{
-        wrapper: "w-full max-w-full md:max-h-[20px] md:bg-transparent",
+        wrapper: "w-full max-w-full md:max-h-[20px] md:bg-transparent"
       }}
         style={lastPath === "Dashboard" ? navbarDashboardStyles : navbarStyles}
       >
-        <NavbarContent className="md:hidden">
-          <BurguerButton />
-        </NavbarContent>
-
-        <NavbarContent justify="start" className="flex items-start flex-col gap-2 md:block hidden ">
-          <p className="xl:text-5xl text-xl font-bold ">
+<div className="flex justify-between w-full items-center gap-2">
+        <div className="md:hidden" onClick={setCollapsed}>
+        <Hamburger isDashboard={isDashboard} isLightTheme={isLightTheme} />
+        </div>
+        <div className="flex items-start justify-start flex-col gap-2 md:block flex-wrap hidden ">
+          <p className="xl:text-5xl md:text-xl sm:text-xl font-bold  ">
             {lastPath === "Dashboard" ? "Welcome, Rishi" : lastPath}
           </p>
           <p className={`xl:text-base ${isDashboard ? "text-white":"text-[#686868] dark:text-white"} text-xs font-normal`}>Some content regarding {lastPath.toLowerCase()} goes here.</p>
-        </NavbarContent>
-        <NavbarContent className="flex pt-8 gap-8">
+        </div>
+        <div className="flex items-center sm:gap-8 gap-2">
           <div className="flex gap-1 xl:flex hidden">
            {isDashboard ?  <CloudAndSun className="ml-2" /> : <SunOnly />}
             <div className="flex flex-col justify-center">
@@ -98,8 +96,9 @@ export const NavbarWrapper = ({ children }: Props) => {
           <div className="h-8 w-[1px] border bg-[#FFFFFF33] rounded-full xl:block hidden"></div>
           <ModeToggle isDashboard={isDashboard} />
           <NotificationsDropdown isDashboard={isDashboard} />
-          <UserDropdown  />
-        </NavbarContent>
+          <UserDropdown isDashboard={isDashboard}  />
+        </div>
+        </div>
       </Navbar>
       {children}
     </div>

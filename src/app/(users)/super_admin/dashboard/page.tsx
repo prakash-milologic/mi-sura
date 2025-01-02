@@ -1,18 +1,16 @@
 "use client";
-import React from "react";
-
 import { August, CarbonEmission, CoalSaved, DailyYieldIcon, July, June, November, October, September, TreeSaved } from "@/app/assets/SVGCollection";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useTheme } from "next-themes";
+import React from "react";
+import ReactSpeedometer from "react-d3-speedometer";
 import CardCarbonFootprint from "./_components/card-carbon-footprint";
 import CardLayout from "./_components/card-layout";
 import CardRevenue from "./_components/card-revenue";
 import IconWithText from "./_components/icon-with-text";
-import ProductionCard from "./_components/production-card";
-import dynamic from "next/dynamic";
 import PlantListCard from "./_components/plant-list-card";
-const ReactSpeedometer = dynamic(() => import("react-d3-speedometer"), { ssr: false });
+import ProductionCard from "./_components/production-card";
 
 function fetchDailyInverterData() {
   return axios.get(`/api/tsdb/daily_inverter_data`);
@@ -297,6 +295,7 @@ export default function DashboardPage() {
         <div className="col-span-3">
           <CardLayout title="Monthly Generation" content="" className="rounded-2xl" >
             <ReactSpeedometer
+              // width={400}
               height={200}
               needleHeightRatio={0.6}
               value={777}
@@ -339,7 +338,6 @@ export default function DashboardPage() {
               needleColor={'#90f2ff'}
               textColor={'#d8dee9'}
             />
-            asdf
 
           </CardLayout>
           <CardLayout title="Monthly Generation" content="" className="rounded-2xl mt-6" >
@@ -381,7 +379,81 @@ export default function DashboardPage() {
 
         <PlantListCard />
       </div>
- 
+      {/* 
+      <div className=" grid grid-cols-1 xl:grid-cols-4 gap-5">
+        <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5 xl:h-[500px]">
+          <CardInfo
+            title="Current Power"
+            content={
+              getActivePower() == undefined ? "N/A" : getActivePower() + " kW"
+            }
+            descTitle="Installed Capacity"
+            descContent={
+              getInstalledCapacity() == undefined
+                ? "N/A"
+                : getInstalledCapacity() + " kW"
+            }
+          />
+          <CardInfo
+            title="Daily Yield"
+            content={
+              getDailyPowerYield() == undefined
+                ? "N/A"
+                : getDailyPowerYield() + " kWh"
+            }
+            descTitle="Monthly Yield"
+            descContent={
+              getMonthlyPowerYield() == undefined
+                ? "N/A"
+                : getMonthlyPowerYield() + " kWh"
+            }
+          />
+          <CardInfo
+
+            title="Daily Revenue"
+            content={
+              getDailyRevenue() == undefined ? "N/A" : getDailyRevenue() + " MYR"
+            }
+            descTitle="Monthly Revenue"
+            descContent={
+              getMonthlyRevenue() == undefined
+                ? "N/A"
+                : getMonthlyRevenue() + " MYR"
+            }
+          />
+          <CardInfo
+            title="Active Plant"
+            className="row-span-2"
+            content={`${plantInfo.active} Plant${plantInfo.active > 1 ? "s" : ""
+              }`}
+            descTitle="Total Plant"
+            descContent={`${plantInfo.total} Plant${plantInfo.total > 1 ? "s" : ""
+              }`}
+          />
+
+        </div>
+        <div className="col-span-2">
+          <CardWatchList
+            activePower={
+              getActivePower() == undefined ? "N/A" : getActivePower() + " kW"
+            }
+          />
+        </div>
+
+        <div className="col-span-2 space-y-4">
+          <CardEnvironmental impacts={impacts} />
+          <CardCarbonFootprint />
+        </div>
+        <div className="col-span-2">
+          <CardWeatherForecast />
+        </div>
+        <div className="col-span-3">
+          <CardRevenue title="Energy Generated" type="area" api="" />
+        </div>
+        <div className="col-span-1">
+          <PlantListCard />
+        </div>
+      </div> */}
 
     </div>
   );

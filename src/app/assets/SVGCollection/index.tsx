@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-export const DailyYieldIcon = (props?: SVGProps<SVGSVGElement>,width:number=18,height:number=25) => {
+export const DailyYieldIcon = (props?: SVGProps<SVGSVGElement>, width: number = 18, height: number = 25) => {
     return (
         <svg width={width} height={height} viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path d="M1.47265 13.8371H5.40948V22.9652C5.40948 24.3091 7.09124 24.943 7.98308 23.9288L17.6277 13.0257C18.4686 12.0748 17.7933 10.5915 16.5193 10.5915H12.5824V1.46335C12.5824 0.119486 10.9007 -0.514414 10.0088 0.499825L0.364222 11.4029C-0.463914 12.3537 0.211335 13.8371 1.47265 13.8371Z" fill="#FDB216" />
@@ -303,6 +303,17 @@ export const ConnectionIcon = () => {
     return (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10.3933 3.32373H10.1666V1.32373C10.1666 1.0504 9.93992 0.82373 9.66659 0.82373C9.39325 0.82373 9.16659 1.0504 9.16659 1.32373V3.32373H6.83325V1.32373C6.83325 1.0504 6.60659 0.82373 6.33325 0.82373C6.05992 0.82373 5.83325 1.0504 5.83325 1.32373V3.32373H5.60659C4.90659 3.32373 4.33325 3.89706 4.33325 4.59706V7.9904C4.33325 9.45706 5.33325 10.6571 6.99992 10.6571H7.49992V14.6571C7.49992 14.9304 7.72659 15.1571 7.99992 15.1571C8.27325 15.1571 8.49992 14.9304 8.49992 14.6571V10.6571H8.99992C10.6666 10.6571 11.6666 9.45706 11.6666 7.9904V4.59706C11.6666 3.89706 11.0933 3.32373 10.3933 3.32373Z" fill="#058DF7" />
+        </svg>
+
+    )
+}
+
+export const Hamburger = ({isDashboard = false,isLightTheme = false}: {isDashboard?: boolean, isLightTheme?: boolean}) => {
+    return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
+            <path d="M3 12H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
+            <path d="M3 17H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
         </svg>
 
     )

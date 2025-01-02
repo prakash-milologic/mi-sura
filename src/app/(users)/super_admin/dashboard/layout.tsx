@@ -12,6 +12,7 @@ export default function SuperAdminDashboardLayout({
   return (
     <QueryClientProvider client={queryClient}>
       <div className="mt-36">
+        {/* <Header title="Dashboard" /> */}
         {children}
       </div>
     </QueryClientProvider>

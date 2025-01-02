@@ -110,13 +110,13 @@ const { theme, resolvedTheme } = useTheme();
   ];
   const isLightTheme = (theme || resolvedTheme) === "light";
   return (
-    <div className="px-8  pb-20 ">
+    <div className="px-2 pb-2 md:px-8 md:pb-20 ">
       <FilterByDevice />
       
       <div className="grid grid-cols-1 xl:grid-cols-5 gap-6 mt-6">
         <div className="col-span-3">
           <CardLayout title="Input Metrics" content="" className="rounded-2xl dark:bg-[#262629] " >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 dark:text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 dark:text-white">
               {
                 inputMetrics.map((card, index) => (
                   <ProductionCard
@@ -132,7 +132,7 @@ const { theme, resolvedTheme } = useTheme();
             </div>
           </CardLayout>
           <CardLayout title="Output Metrics" content="" className="rounded-2xl dark:bg-[#262629] mt-6 " >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 dark:text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 dark:text-white">
               {
                 outputMetrics.map((card, index) => (
                   <ProductionCard
@@ -148,7 +148,7 @@ const { theme, resolvedTheme } = useTheme();
             </div>
           </CardLayout>
           <CardLayout title="LLC Currents" content="" className="rounded-2xl dark:bg-[#262629] mt-6 " >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 dark:text-white">
+            <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-4 dark:text-white">
               {
                 llcCurrents.map((card, index) => (
                   <ProductionCard
@@ -166,7 +166,7 @@ const { theme, resolvedTheme } = useTheme();
           </CardLayout>
 
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 grid sm:grid-cols-1 xl:grid-cols-1 md:grid-cols-2 gap-6">
           <CardLayout title="DC Link Voltage" content="" className="rounded-2xl dark:bg-[#262629]" >
             <ReactSpeedometer
               height={250}
@@ -196,7 +196,7 @@ const { theme, resolvedTheme } = useTheme();
               </div>
             </div>
           </CardLayout>
-          <CardLayout title="Internal Temperature" content="" className="rounded-2xl  mt-6  dark:bg-[#262629]" >
+          <CardLayout title="Internal Temperature" content="" className="rounded-2xl  sm:mt-6 xl:mt-0 md:mt-0  dark:bg-[#262629]" >
           <TemperatureBar value={60} min={0} max={100} />
           <hr className="mb-4 mt-4 dark:border-[#333338]" />
             <div className="flex justify-center gap-6 items-center">

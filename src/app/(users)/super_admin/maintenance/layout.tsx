@@ -11,7 +11,7 @@ export default function SuperAdminDashboardLayout({
 }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="bg-[#EFF4F8] pt-12 dark:bg-[#0B0A08]">
+      <div className="bg-[#EFF4F8] md:pt-12 pt-2 dark:bg-[#0B0A08]">
         {children}
       </div>
     </QueryClientProvider>
