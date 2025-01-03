@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Chip } from "@nextui-org/react";
 import axios from "axios";
 import { useTheme } from "next-themes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactSpeedometer from "react-d3-speedometer";
 import TemperatureBar from "./_components/Temperature";
 import CardLayout from "../dashboard/_components/card-layout";
@@ -21,6 +21,18 @@ function fetchSumDailyPowerYield() {
 export default function DashboardPage() {
 
 const { theme, resolvedTheme } = useTheme();
+const [textColor, setTextColor] = useState<string>("#000000");
+
+useEffect(() => {
+  if (resolvedTheme === "light") {
+    setTextColor("#FFFFFF");
+  } else {
+    setTextColor("#000000");
+
+  }
+}, [resolvedTheme]);  // This ensures the effect is triggered whenever `resolvedTheme` changes.
+
+
 
   interface MetricProps {
     title: string;
@@ -108,7 +120,8 @@ const { theme, resolvedTheme } = useTheme();
       chipcolor: "bg-[#FDB216] text-white ",
     },
   ];
-  const isLightTheme = (theme || resolvedTheme) === "light";
+
+
   return (
     <div className="px-2 pb-2 md:px-8 md:pb-20 ">
       <FilterByDevice />
@@ -169,6 +182,7 @@ const { theme, resolvedTheme } = useTheme();
         <div className="col-span-2 grid sm:grid-cols-1 xl:grid-cols-1 md:grid-cols-2 gap-6">
           <CardLayout title="DC Link Voltage" content="" className="rounded-2xl dark:bg-[#262629]" >
             <ReactSpeedometer
+             key={resolvedTheme} 
               height={250}
               maxValue={600}
               value={480}
@@ -179,7 +193,7 @@ const { theme, resolvedTheme } = useTheme();
               needleTransitionDuration={3333}
               needleColor={'#90f2ff'}
               segments={2}
-              textColor={theme === "dark" ? "#FFFFFF" : "#000000"}
+              textColor={textColor}
             />
             <hr className="mb-4 dark:border-[#333338]" />
             <div className="flex justify-center gap-6 items-center">
