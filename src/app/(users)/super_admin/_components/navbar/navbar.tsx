@@ -68,13 +68,13 @@ export const NavbarWrapper = ({ children }: Props) => {
   return (
     <div className="relative flex flex-col flex-1">
       <Navbar
-      className="w-full navbar-container-wrapper"
+      className={`w-full navbar-container-wrapper ${isDashboard ? "items-start": "items-center"}`}
       classNames={{
         wrapper: "w-full max-w-full md:max-h-[20px] md:bg-transparent"
       }}
         style={lastPath === "Dashboard" ? navbarDashboardStyles : navbarStyles}
       >
-<div className="flex justify-between w-full items-center gap-2">
+<div className={`flex justify-between w-full ${isDashboard && "pt-8"} items-center gap-2`}>
         <div className="md:hidden" onClick={setCollapsed}>
         <Hamburger isDashboard={isDashboard} isLightTheme={isLightTheme} />
         </div>
