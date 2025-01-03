@@ -34,6 +34,6 @@ export function ModeToggle({isDashboard=false}:{isDashboard:boolean}) {
           System
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
+    </DropdownMenu> 
   )
 }
