@@ -36,4 +36,4 @@ export function ModeToggle({isDashboard=false}:{isDashboard:boolean}) {
       </DropdownMenuContent>
     </DropdownMenu> 
   )
-}
+} 
