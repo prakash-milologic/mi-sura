@@ -2,13 +2,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { DataTable } from "./statistics_report_table/data-table";
+// import { DataTable } from "./statistics_report_table/data-table";
 import {
   dayStatisticsColumns,
   monthStatisticsColumns,
   totalStatisticsColumns,
   yearStatisticsColumns,
 } from "./statistics_report_table/columns";
+import { DataTable } from "./statistics_report_table/data-table";
 
 function fetchStatisticsReportPlants({
   period,
@@ -196,11 +197,9 @@ export default function StatisticsTableContainer({
   };
 
   return (
-    <div>
       <DataTable
         columns={getStatistics().columns as any}
         data={getStatistics().data || []}
       />
-    </div>
   );
 }

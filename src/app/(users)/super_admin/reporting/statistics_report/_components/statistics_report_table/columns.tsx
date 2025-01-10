@@ -55,12 +55,13 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
   {
     accessorKey: "plant",
     header: ({ column }) => <div className="min-w-[10rem]">Plant</div>,
+    filterFn: "includesString"
   },
   {
     accessorKey: "installedPower",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Installed Power (kWp)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -77,7 +78,7 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
     accessorKey: "yieldToday",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Yield Today (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -94,7 +95,7 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
     accessorKey: "totalYield",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Total Yield (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -111,7 +112,7 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
     accessorKey: "revenueToday",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Revenue Today
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -135,7 +136,7 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
     accessorKey: "totalCO2Reduction",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           <span className="space-x-1">
             <span>Total</span>
             <span>
@@ -156,7 +157,7 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
   },
   {
     accessorKey: "address",
-    header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
+    header: ({ column }) => <div className="text-center">Plant Address</div>,
   },
 ];
 
@@ -169,7 +170,7 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
     accessorKey: "installedPower",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Installed Power (kWp)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -186,7 +187,7 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
     accessorKey: "yieldThisMonth",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Yield This Month (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -203,7 +204,7 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
     accessorKey: "totalYield",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Total Yield (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -220,7 +221,7 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
     accessorKey: "revenueThisMonth",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Revenue This Month
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -244,7 +245,7 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
     accessorKey: "totalCO2Reduction",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           <span className="space-x-1">
             <span>Total</span>
             <span>
@@ -263,10 +264,10 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
       );
     },
   },
-  {
-    accessorKey: "address",
-    header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  },
+  // {
+  //   accessorKey: "address",
+  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
+  // },
 ];
 
 export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
@@ -278,7 +279,7 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
     accessorKey: "installedPower",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Installed Power (kWp)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -295,7 +296,7 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
     accessorKey: "yieldThisYear",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Yield This Year (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -312,7 +313,7 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
     accessorKey: "totalYield",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Total Yield (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -329,7 +330,7 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
     accessorKey: "revenueThisYear",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Revenue This Year
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -353,7 +354,7 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
     accessorKey: "totalCO2Reduction",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           <span className="space-x-1">
             <span>Total</span>
             <span>
@@ -372,10 +373,10 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
       );
     },
   },
-  {
-    accessorKey: "address",
-    header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  },
+  // {
+  //   accessorKey: "address",
+  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
+  // },
 ];
 
 export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
@@ -387,7 +388,7 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
     accessorKey: "installedPower",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Installed Power (kWp)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -404,7 +405,7 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
     accessorKey: "totalYield",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Total Yield (kWh)
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -421,7 +422,7 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
     accessorKey: "cumulativeTotalRevenue",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           Cumulative Total Revenue
           {column.getIsSorted() === "desc" ? (
             <CaretDownIcon className="ml-2 h-4 w-4" />
@@ -445,7 +446,7 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
     accessorKey: "totalCO2Reduction",
     header: ({ column }) => {
       return (
-        <Button variant="ghost" onClick={() => column.toggleSorting()}>
+        <Button className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0" variant="ghost" onClick={() => column.toggleSorting()}>
           <span className="space-x-1">
             <span>Total</span>
             <span>
@@ -464,8 +465,8 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
       );
     },
   },
-  {
-    accessorKey: "address",
-    header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  },
+  // {
+  //   accessorKey: "address",
+  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
+  // },
 ];

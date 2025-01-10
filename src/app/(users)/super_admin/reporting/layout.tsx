@@ -6,8 +6,8 @@ export default async function SuperAdminReportingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="absolute  mt-40 dark:bg-black w-full h-full">
-      <Header title="Reporting" />
+    <div className="bg-[#EFF4F8] md:pt-12 pt-2 dark:bg-[#0B0A08]">
+      {/* <Header title="Reporting" /> */}
       {children}
     </div>
   );

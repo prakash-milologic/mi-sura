@@ -308,12 +308,92 @@ export const ConnectionIcon = () => {
     )
 }
 
-export const Hamburger = ({isDashboard = false,isLightTheme = false}: {isDashboard?: boolean, isLightTheme?: boolean}) => {
+export const Hamburger = ({ isDashboard = false, isLightTheme = false }: { isDashboard?: boolean, isLightTheme?: boolean }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 7H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
-            <path d="M3 12H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
-            <path d="M3 17H21" stroke={(isDashboard || !isLightTheme) ? "white":"#171717"} stroke-width="1.5" stroke-linecap="round" />
+            <path d="M3 7H21" stroke={(isDashboard || !isLightTheme) ? "white" : "#171717"} stroke-width="1.5" stroke-linecap="round" />
+            <path d="M3 12H21" stroke={(isDashboard || !isLightTheme) ? "white" : "#171717"} stroke-width="1.5" stroke-linecap="round" />
+            <path d="M3 17H21" stroke={(isDashboard || !isLightTheme) ? "white" : "#171717"} stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+
+    )
+}
+
+export const ReportingIcon = () => {
+    return (
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.3334 2.29199H1.66669C1.32502 2.29199 1.04169 2.00866 1.04169 1.66699C1.04169 1.32533 1.32502 1.04199 1.66669 1.04199H18.3334C18.675 1.04199 18.9584 1.32533 18.9584 1.66699C18.9584 2.00866 18.675 2.29199 18.3334 2.29199Z" fill="white" />
+            <path d="M13.8916 18.617C13.7833 18.8337 13.5583 18.9587 13.3333 18.9587C13.2416 18.9587 13.1416 18.9337 13.0583 18.892L9.99997 17.367L6.94164 18.892C6.8583 18.9337 6.7583 18.9587 6.66664 18.9587C6.44164 18.9587 6.21664 18.8337 6.1083 18.617C5.94997 18.3003 6.07497 17.9253 6.39164 17.7753L9.37497 16.2837V14.167H10.625V16.2837L13.6083 17.7753C13.925 17.9253 14.05 18.3003 13.8916 18.617Z" fill="white" />
+            <path d="M2.5 1.66699V11.7503C2.5 13.3337 3.33333 14.167 4.91667 14.167H15.0833C16.6667 14.167 17.5 13.3337 17.5 11.7503V1.66699H2.5ZM14.15 7.15033L11.525 9.34199C11.2833 9.54199 10.975 9.62533 10.6833 9.57533C10.3833 9.52533 10.125 9.34199 9.96667 9.07533L9.09167 7.61699L6.65 9.65033C6.53333 9.75033 6.39167 9.79199 6.25 9.79199C6.075 9.79199 5.89167 9.71699 5.76667 9.56699C5.54167 9.30032 5.58333 8.90866 5.85 8.68366L8.475 6.49199C8.71667 6.29199 9.025 6.20866 9.31667 6.25866C9.61667 6.30866 9.875 6.49199 10.0333 6.75866L10.9083 8.21699L13.35 6.18366C13.6167 5.95866 14.0083 6.00033 14.2333 6.26699C14.45 6.53366 14.4167 6.92533 14.15 7.15033Z" fill="white" />
+        </svg>
+
+    )
+}
+
+export const PlantReport = ({ isCurrent }: { isCurrent?: boolean }) => {
+    return (
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66663 18.333H18.3333" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14.1667 1.66699H5.83333C3.33333 1.66699 2.5 3.15866 2.5 5.00033V18.3337H17.5V5.00033C17.5 3.15866 16.6667 1.66699 14.1667 1.66699Z" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.83337 13.75H8.33337" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.6666 13.75H14.1666" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.83337 10H8.33337" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.6666 10H14.1666" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.83337 6.25H8.33337" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.6666 6.25H14.1666" stroke={isCurrent ? "#009848": "#818282"} stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+    )
+}
+
+export const StatisticsIcon = ({ isCurrent }: { isCurrent?: boolean }) => {
+    return (
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.66663 1.66699V15.8337C1.66663 17.217 2.78329 18.3337 4.16663 18.3337H18.3333" stroke={isCurrent ? "#009848": "#818282"}  stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4.16663 14.1663L7.99163 9.69969C8.62496 8.96635 9.74996 8.91634 10.4333 9.60801L11.225 10.3997C11.9083 11.083 13.0333 11.0413 13.6666 10.308L17.5 5.83301" stroke={isCurrent ? "#009848": "#818282"}  stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    )
+}
+
+export const LeftArrow = () => {
+    return (<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.93994 13.2797L10.2866 8.93306C10.7999 8.41973 10.7999 7.57973 10.2866 7.06639L5.93994 2.71973" stroke="#009848" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    )
+}
+export const CalendarIcon = () => {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.33337 1.33301V3.33301" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10.6666 1.33301V3.33301" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2.33337 6.05957H13.6667" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14 5.66634V11.333C14 13.333 13 14.6663 10.6667 14.6663H5.33333C3 14.6663 2 13.333 2 11.333V5.66634C2 3.66634 3 2.33301 5.33333 2.33301H10.6667C13 2.33301 14 3.66634 14 5.66634Z" stroke="#171717" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7.99703 9.13314H8.00302" stroke="#171717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.5295 9.13314H5.53549" stroke="#171717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.5295 11.1331H5.53549" stroke="#171717" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+    )
+}
+
+export const ExportIcon = () => {
+    return (
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.8333 9.66634L17.6666 2.83301" stroke="#009848" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M18.3333 6.16699V2.16699H14.3333" stroke="#009848" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9.16675 2.16699H7.50008C3.33341 2.16699 1.66675 3.83366 1.66675 8.00033V13.0003C1.66675 17.167 3.33341 18.8337 7.50008 18.8337H12.5001C16.6667 18.8337 18.3334 17.167 18.3334 13.0003V11.3337" stroke="#009848" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+    )
+}
+export const PrintIcon = () => {
+    return (
+        <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.64575 6.91634H15.3541V5.08301C15.3541 3.24967 14.6666 2.33301 12.6041 2.33301H9.39575C7.33325 2.33301 6.64575 3.24967 6.64575 5.08301V6.91634Z" stroke="#009848" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M14.6666 14.25V17.9167C14.6666 19.75 13.7499 20.6667 11.9166 20.6667H10.0833C8.24992 20.6667 7.33325 19.75 7.33325 17.9167V14.25H14.6666Z" stroke="#009848" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19.25 9.66699V14.2503C19.25 16.0837 18.3333 17.0003 16.5 17.0003H14.6667V14.2503H7.33333V17.0003H5.5C3.66667 17.0003 2.75 16.0837 2.75 14.2503V9.66699C2.75 7.83366 3.66667 6.91699 5.5 6.91699H16.5C18.3333 6.91699 19.25 7.83366 19.25 9.66699Z" stroke="#009848" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15.5834 14.25H14.4742H6.41675" stroke="#009848" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6.41675 10.583H9.16675" stroke="#009848" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
 
     )

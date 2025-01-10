@@ -54,6 +54,9 @@
 @layer base {
   * {
     @apply border-border;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
   }
   body {
     @apply bg-background text-foreground;
@@ -75,4 +78,25 @@
 }
 .current-value{
   display: none !important;
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+@media (max-width: 442px) {
+  .tab-item{
+    padding:12px 6px !important;
+
+  }
+
+}
+
+.custom-datepicker > .MuiInputBase-root > input{
+  width: 100px;
+}
+.custom-datepicker{
+  margin-top:15px !important;
+  border:opx !important;
+  outline: none !important;
 }
