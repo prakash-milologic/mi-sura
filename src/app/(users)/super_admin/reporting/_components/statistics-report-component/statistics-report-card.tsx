@@ -30,7 +30,7 @@ function fetchStatisticsReport({
   return axios.get(`/api/tsdb/statistics_report?period=${period}&time=${time}`);
 }
 
-export default function StatisticsReportCard() {
+export default function StatisticsReportCard({setCurrentStatics,setDefaultFileName,statisticsPlantsData,setStatisticsPlantsData}: {setCurrentStatics:any,setDefaultFileName:any,statisticsPlantsData:any,setStatisticsPlantsData:any}) {
   const [currentTab, setCurrentTab] = useState<DateView | "total">("day");
   const [datePickerValue, setDatePickerValue] = useState(
     new Date().toISOString()
@@ -57,6 +57,11 @@ export default function StatisticsReportCard() {
     if (currentTab === "total") return `${defaultName} Total`;
     return defaultName;
   };
+
+  useEffect(() => {
+  let name = getFilenameExport();
+  setDefaultFileName(name);
+  }, [currentTab, datePickerValue]);
 
   let currentYield = statisticsReport?.data?.currentYield;
   currentYield = !currentYield
@@ -98,9 +103,8 @@ export default function StatisticsReportCard() {
     return !result ? "0" : String(result);
   };
 
-  const [statisticsPlantsData, setStatisticsPlantsData] = useState<
-    any[] | undefined
-  >(undefined);
+
+
 
   const getCurrentStatisticsCSVProps = () => {
     const currentStatisticsData = statisticsPlantsData || [];
@@ -119,8 +123,13 @@ export default function StatisticsReportCard() {
       default:
         break;
     }
+    setCurrentStatics({ currentStatisticsData, currentStatisticsHeaders })
     return { currentStatisticsData, currentStatisticsHeaders };
   };
+  useEffect(()=>{
+    getCurrentStatisticsCSVProps()
+  },[currentTab])
+
 
   const [disabledDatePicker, setDisabledDatePicker] = useState(true);
   const [currentDatePickerViews, setCurrentDatePickerViews] = useState<
@@ -237,6 +246,29 @@ export default function StatisticsReportCard() {
         value={currentTab}
         onValueChange={(value) => setCurrentTab(value as DateView)}
       >
+          <div className="w-full flex items-center justify-end">
+            {/* <Button
+              asChild
+              variant={"outline"}
+              className={
+                !statisticsPlantsData ? "pointer-events-none opacity-50" : ""
+              }
+            > */}
+              {/* <CSVLink
+                filename={getFilenameExport()}
+                data={getCurrentStatisticsCSVProps().currentStatisticsData}
+                headers={
+                  getCurrentStatisticsCSVProps().currentStatisticsHeaders
+                }
+                onClick={() => {
+                  if (statisticsPlantsData) return true;
+                  return false;
+                }}
+              >
+                Export
+              </CSVLink> */}
+            {/* </Button> */}
+          </div>
         <CardHeader className="flex flex-col xl:flex-row gap-2  justify-between px-2 py-4 md:px-6 md:py-8 m-0  border-b border-[#1717171A] dark:border-[#FFFFFF1A]">
           <div>
             <p className=" text-2xl md:text-[32px] dark:text-white text-center xl:text-left font-semibold text-[#171717]">Statistics Report </p>
@@ -442,26 +474,4 @@ export default function StatisticsReportCard() {
 }
 
 
-          {/* <div className="w-full flex items-center justify-end">
-            <Button
-              asChild
-              variant={"outline"}
-              className={
-                !statisticsPlantsData ? "pointer-events-none opacity-50" : ""
-              }
-            >
-              <CSVLink
-                filename={getFilenameExport()}
-                data={getCurrentStatisticsCSVProps().currentStatisticsData}
-                headers={
-                  getCurrentStatisticsCSVProps().currentStatisticsHeaders
-                }
-                onClick={() => {
-                  if (statisticsPlantsData) return true;
-                  return false;
-                }}
-              >
-                Export
-              </CSVLink>
-            </Button>
-          </div> */}
+        

@@ -4,42 +4,31 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
-  Divider,
+  CardHeader
 } from "@nextui-org/react";
 // import { DatePicker } from "@nextui-org/date-picker";
-import { parseDate } from "@internationalized/date";
-import { add, format, formatISO } from "date-fns";
-import { useEffect, useState } from "react";
-import { DataTable } from "./plant_report_table/data-table";
-import {
-  DayPlantReport,
-  MonthPlantReport,
-  TotalPlantReport,
-  YearPlantReport,
-  totalColumns,
-  dayColumns,
-  monthColumns,
-  yearColumns,
-} from "./plant_report_table/columns";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { CalendarIcon, ExportIcon, PrintIcon } from "@/app/assets/SVGCollection";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useTheme } from "next-themes";
 import { DateView } from "@mui/x-date-pickers";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { CSVLink } from "react-csv";
-import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import EnergyChart from "../energy-chart";
 import {
   dayPlantCSVHeaders,
   monthPlantCSVHeaders,
   totalPlantCSVHeaders,
   yearPlantCSVHeaders,
-} from "./export-csv-headers";
-import EnergyChart from "./energy-chart";
-import { SunIcon } from "@radix-ui/react-icons";
-import { IconButton } from "@mui/material";
-import { CalendarIcon, ExportIcon, PrintIcon } from "@/app/assets/SVGCollection";
+} from "../export-csv-headers";
+import {
+  DayPlantReport,
+  MonthPlantReport,
+  TotalPlantReport,
+  YearPlantReport
+} from "./plant_report_table/columns";
 
 function fetchPlantReport({
   plantId,
@@ -280,30 +269,6 @@ export default function PlantReportCard({
           )}
           </div>
          
-{/* 
-          <div className="w-full flex items-center justify-end">
-            <Button
-              asChild
-              variant={"outline"}
-              className={
-                !plantReport?.data?.length
-                  ? "pointer-events-none opacity-50"
-                  : ""
-              }
-            >
-              <CSVLink
-                filename={getFilenameExport()}
-                data={getCurrentPlantCSVProps().currentPlantData}
-                headers={getCurrentPlantCSVProps().currentPlantHeaders}
-                onClick={() => {
-                  if (plantReport?.data?.length) return true;
-                  return false;
-                }}
-              >
-                Export
-              </CSVLink>
-            </Button>
-          </div> */}
         </CardHeader>
         <CardBody className="m-0 p-0" >
           <div className="flex justify-end items-center gap-4 px-6 pt-6">

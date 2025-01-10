@@ -90,30 +90,6 @@ export function DataTable<TData, TValue>({
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 start-0 flex items-center ps-2 md:ps-3 pointer-events-none">
-              {/* <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7.66683 13.9948C11.1646 13.9948 14.0002 11.1593 14.0002 7.66146C14.0002 4.16366 11.1646 1.32812 7.66683 1.32812C4.16903 1.32812 1.3335 4.16366 1.3335 7.66146C1.3335 11.1593 4.16903 13.9948 7.66683 13.9948Z"
-                  stroke="#171717"
-                  strokeOpacity="0.65"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M14.6668 14.6615L13.3335 13.3281"
-                  stroke="#171717"
-                  strokeOpacity="0.65"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg> */}
               <Search width={16} height={16} className=" w-3 h-3 md:w-4 md:h-4 darK:fill-[FFFFFF66]" />
             </div>
             <input
@@ -180,7 +156,6 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <DataTablePagination table={table} />
-
     </div>
 
   );

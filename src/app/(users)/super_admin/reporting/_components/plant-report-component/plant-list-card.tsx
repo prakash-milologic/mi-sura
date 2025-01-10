@@ -5,13 +5,9 @@ import { cn } from "@/lib/utils";
 import {
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
+  CardHeader
 } from "@nextui-org/react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 export default function PlantListCard({
   plants,

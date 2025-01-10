@@ -4,7 +4,7 @@ import PlantListCard from "./plant-list-card";
 import PlantReportCard from "./plant-report-card";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import EnergyChart from "./energy-chart";
+// import EnergyChart from "./energy-chart";
 
 function fetchPlants() {
     return axios.get(`/api/plants`);
