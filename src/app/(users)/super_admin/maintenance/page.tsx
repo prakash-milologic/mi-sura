@@ -21,16 +21,15 @@ function fetchSumDailyPowerYield() {
 export default function DashboardPage() {
 
 const { theme, resolvedTheme } = useTheme();
-const [textColor, setTextColor] = useState<string>("#000000");
+const [textColor, setTextColor] = useState<string>(theme == "dark" ? "#FFFFFF":"#000000");
 
 useEffect(() => {
-  if (resolvedTheme === "light") {
+  if (theme == "light") {
     setTextColor("#FFFFFF");
   } else {
     setTextColor("#000000");
-
   }
-}, [resolvedTheme]);  // This ensures the effect is triggered whenever `resolvedTheme` changes.
+}, [theme,resolvedTheme]);  // This ensures the effect is triggered whenever `resolvedTheme` changes.
 
 
 

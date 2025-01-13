@@ -24,6 +24,8 @@ export default function ProductionCard({
   imageSrc,
   itemStatus,
   isLLC,
+  titleStyle="",
+  contentStyle="",
   ...props
 }: {
   key: number;
@@ -36,6 +38,8 @@ export default function ProductionCard({
   imageSrc?: string;
   itemStatus?: string;
   isLLC?: boolean;
+  titleStyle?: string;
+  contentStyle?: string;
 } & CardProps) {
  
   return (
@@ -52,11 +56,11 @@ export default function ProductionCard({
         ) : null
       }
       <CardHeader className="p-0 flex justify-between">
-        <p className="text-sm sm:text-base text=[#171717CC] font-medium ">{title}</p>
+        <p className={cn("text-sm sm:text-base text=[#171717CC] font-medium ",titleStyle)}>{title}</p>
           {icon && <div className="flex justify-center">{icon}</div>}
       </CardHeader>
       <CardBody className="pt-2 pb-4 px-0 border-b dark:border-b-[#FFFFFF26]">
-          <p className="text-2xl md:text-4xl font-semibold ">{content}</p>
+          <p className={cn("text-2xl md:text-4xl font-semibold ",contentStyle)}>{content}</p>
       </CardBody>
       <CardFooter className="px-0 flex justify-between gap-1.5">
    { descTitle &&  <p className="text-xs font-medium text-foreground-400 dark:text-[#FFFFFFBF]">

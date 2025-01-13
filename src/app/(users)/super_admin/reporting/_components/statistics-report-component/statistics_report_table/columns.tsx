@@ -107,6 +107,13 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      let totalYieldWithComma  = row.original.totalYield ? row.original.totalYield.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+      return(
+      <div>
+        {totalYieldWithComma}
+      </div>
+    )}
   },
   {
     accessorKey: "revenueToday",
@@ -154,10 +161,18 @@ export const dayStatisticsColumns: ColumnDef<DayStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      return(
+      <div>
+        {row.original.totalCO2Reduction
+          ? `${row.original.totalCO2Reduction} kg`
+          : row.original.totalCO2Reduction}
+      </div>
+    )}
   },
   {
     accessorKey: "address",
-    header: ({ column }) => <div className="text-center">Plant Address</div>,
+    header: ({ column }) => <div className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0 text-center">Plant Address</div>,
   },
 ];
 
@@ -216,6 +231,13 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      let totalYieldWithComma  = row.original.totalYield ? row.original.totalYield.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+      return(
+      <div>
+        {totalYieldWithComma}
+      </div>
+    )}
   },
   {
     accessorKey: "revenueThisMonth",
@@ -263,11 +285,19 @@ export const monthStatisticsColumns: ColumnDef<MonthStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      return(
+      <div>
+        {row.original.totalCO2Reduction
+          ? `${row.original.totalCO2Reduction} kg`
+          : row.original.totalCO2Reduction}
+      </div>
+    )}
   },
-  // {
-  //   accessorKey: "address",
-  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  // },
+  {
+    accessorKey: "address",
+    header: ({ column }) => <div className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0 text-center">Plant Address</div>,
+  },
 ];
 
 export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
@@ -325,6 +355,13 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      let totalYieldWithComma  = row.original.totalYield ? row.original.totalYield.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+      return(
+      <div>
+        {totalYieldWithComma}
+      </div>
+    )}
   },
   {
     accessorKey: "revenueThisYear",
@@ -372,11 +409,19 @@ export const yearStatisticsColumns: ColumnDef<YearStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      return(
+      <div>
+        {row.original.totalCO2Reduction
+          ? `${row.original.totalCO2Reduction} kg`
+          : row.original.totalCO2Reduction}
+      </div>
+    )}
   },
-  // {
-  //   accessorKey: "address",
-  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  // },
+  {
+    accessorKey: "address",
+    header: ({ column }) => <div className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0 text-center">Plant Address</div>,
+  },
 ];
 
 export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
@@ -417,6 +462,13 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      let totalYieldWithComma  = row.original.totalYield ? row.original.totalYield.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+      return(
+      <div>
+        {totalYieldWithComma}
+      </div>
+    )}
   },
   {
     accessorKey: "cumulativeTotalRevenue",
@@ -464,9 +516,18 @@ export const totalStatisticsColumns: ColumnDef<TotalStatisticsReport>[] = [
         </Button>
       );
     },
+    cell: ({ row }) => {
+      return(
+      <div>
+        {row.original.totalCO2Reduction
+          ? `${row.original.totalCO2Reduction} kg`
+          : row.original.totalCO2Reduction}
+      </div>
+    )}
+
   },
-  // {
-  //   accessorKey: "address",
-  //   header: ({ column }) => <div className="min-w-[10rem]">Plant Address</div>,
-  // },
+  {
+    accessorKey: "address",
+    header: ({ column }) => <div className="text-[#686868] dark:text-[#FFFFFFBF] font-medium text-xs p-0 text-center">Plant Address</div>,
+  },
 ];

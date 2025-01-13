@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import dynamic from "next/dynamic";
-
-// Dynamically import the Chart component with no SSR
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import colors from "tailwindcss/colors";
+import { generateRandomArray } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 export default function CarbonFootrpintChart({
@@ -12,23 +11,27 @@ export default function CarbonFootrpintChart({
   closedValue,
   openValueLabel,
   closedValueLabel,
-}: {
+}: // inprogressValue,
+{
   openValue: number;
   closedValue: number;
   openValueLabel: string;
   closedValueLabel: string;
+  // inprogressValue: number;
 }) {
   const { theme } = useTheme();
-  const currentTheme = theme || "light";
+  const currentYear = new Date().getFullYear();
+
+
 
   const series: ApexNonAxisChartSeries = [
-    openValue || 0,
-    closedValue || 0,
+    openValue,
+    closedValue,
+    // inprogressValue,
   ];
-
   const options: ApexOptions = {
     theme: {
-      mode: currentTheme as "light" | "dark",
+      mode: theme as "light" | "dark",
     },
     chart: {
       background: "transparent",
@@ -36,7 +39,7 @@ export default function CarbonFootrpintChart({
         show: false,
       },
     },
-    labels: [openValueLabel || "Open", closedValueLabel || "Closed"],
+    labels: [openValueLabel, closedValueLabel],
     legend: {
       show: true,
       position: "bottom",
@@ -44,7 +47,7 @@ export default function CarbonFootrpintChart({
         toggleDataSeries: false,
       },
     },
-    colors: ['#00A38C', '#00E397'],
+    colors: [ '#00A38C','#00E397'],
     plotOptions: {
       pie: {
         donut: {
@@ -53,36 +56,37 @@ export default function CarbonFootrpintChart({
       },
     },
     tooltip: {
-      enabled: true,
-      custom: ({ series, seriesIndex, w }) => {
-        const value = series[seriesIndex] ?? "N/A";
-        const label = w.globals.labels[seriesIndex] ?? "Unknown";
-        return `
-          <div style="
-            background: #171717; 
-            color: #fff; 
-            padding: 8px;
-            font-size: 12px;
-            text-align: center;
-          ">
-            <p>${label}: ${value}</p>
-          </div>
-        `;
+        enabled: true,
+        custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+          const value = series[seriesIndex];
+          const label = w.globals.labels[seriesIndex];
+          return `
+            <div style="
+              background: #171717; 
+              color: #fff; 
+              padding: 8px;
+              font-size: 12px;
+              text-align: center;
+            ">
+              <p>${currentYear} ${label}: ${value}</p>
+            </div>
+          `;
+        },
       },
-    },
+
     noData: {
       text: "N/A",
     },
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full">
       <Chart
         options={options}
         series={series}
         type="donut"
-        width="100%"
-        height="100%"
+        width={"100%"}
+        height={"100%"}
       />
     </div>
   );

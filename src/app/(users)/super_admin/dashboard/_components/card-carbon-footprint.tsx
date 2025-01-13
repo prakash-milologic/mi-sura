@@ -1,7 +1,8 @@
-"use client";
-import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import React from "react";
 import CarbonFootrpintChart from "./carbon-footprint-chart";
 
 function fetchCarbonFootprintData() {
@@ -38,7 +39,34 @@ export default function CardCarbonFootprint() {
     closedValueLabel="Current Contribution to Net Zero"
     openValueLabel="Target Net Zero"
     />
+    
     </>
+    // <Card>
+    //   <CardHeader>
+    //     <CardTitle>Carbon Footprint</CardTitle>
+    //   </CardHeader>
+    //   <CardContent>
+    //     {isLoadingCarbonFootprintData ? (
+    //       <div>Loading...</div>
+    //     ) : carbonFootprintError ? (
+    //       <div>Something went wrong!</div>
+    //     ) : (
+    //       <div className="space-y-2">
+    //         <div className="bg-emerald-400 dark:text-black p-2 rounded-xl">
+    //           2023 Target Net Zero: {TARGET_NET_ZERO}GW
+    //         </div>
 
+    //         <div className="bg-green-200 dark:text-black p-2 rounded-xl">
+    //           {/* Current contribution to Net Zero: 0.5% */}
+    //           Current contribution to Net Zero:{" "}
+    //           {getCurrentNetZeroContribution()
+    //             ? getCurrentNetZeroContribution() + "%"
+    //             : "N/A"}
+    //           <Progress value={getCurrentNetZeroContribution()} />
+    //         </div>
+    //       </div>
+    //     )}
+    //   </CardContent>
+    // </Card>
   );
 }

@@ -206,7 +206,7 @@ export default function StatisticsReportCard({setCurrentStatics,setDefaultFileNa
     {
       title: `${currentTab == "day" ? "Daily" : currentTab == "month" ? "Monthly" : currentTab == "year" ? "Yearly" : "Total"} Yield`,
       content: currentYield + " kWh",
-      descTitle: "Total (MWh)",
+      descTitle: "Total  (MWh)",
       descContent: totalYield + " MWh",
       className: "bg-[#058DF70D] px-4 pt-4 pb-3 md:px-8 md:pt-8 lg:pb-6  dark:bg-[#058DF726]",
       chipcolor: "bg-[#058DF7] text-white ",
@@ -228,7 +228,7 @@ export default function StatisticsReportCard({setCurrentStatics,setDefaultFileNa
     {
       title: `${currentTab == "day" ? "Daily" : currentTab == "month" ? "Monthly" : currentTab == "year" ? "Yearly" : "Total"}  Revenue`,
       content: getCurrentRevenue() + " MYR",
-      descTitle: "Total (MYR)",
+      descTitle: "Total Revenue (MYR)",
       descContent: getTotalRevenue() + " MYR",
       className: "bg-[#D55BC90D] px-4 pt-4 pb-3 md:px-8 md:pt-8 lg:pb-6  dark:bg-[#D55BC926]",
       chipcolor: "bg-[#D55BC9] text-white ",
@@ -247,27 +247,6 @@ export default function StatisticsReportCard({setCurrentStatics,setDefaultFileNa
         onValueChange={(value) => setCurrentTab(value as DateView)}
       >
           <div className="w-full flex items-center justify-end">
-            {/* <Button
-              asChild
-              variant={"outline"}
-              className={
-                !statisticsPlantsData ? "pointer-events-none opacity-50" : ""
-              }
-            > */}
-              {/* <CSVLink
-                filename={getFilenameExport()}
-                data={getCurrentStatisticsCSVProps().currentStatisticsData}
-                headers={
-                  getCurrentStatisticsCSVProps().currentStatisticsHeaders
-                }
-                onClick={() => {
-                  if (statisticsPlantsData) return true;
-                  return false;
-                }}
-              >
-                Export
-              </CSVLink> */}
-            {/* </Button> */}
           </div>
         <CardHeader className="flex flex-col xl:flex-row gap-2  justify-between px-2 py-4 md:px-6 md:py-8 m-0  border-b border-[#1717171A] dark:border-[#FFFFFF1A]">
           <div>
@@ -333,133 +312,6 @@ export default function StatisticsReportCard({setCurrentStatics,setDefaultFileNa
               </TabsContent>
             )
           })}
-
-          {/* <TabsContent value="month">
-            <div className="space-y-5">
-              <div className="grid grid-cols-4 gap-x-2">
-                <div className="col-span-1">
-                  <InfoCard
-                    title="Yield"
-                    primaryBodyTitle="Current Month(kWh)"
-                    primaryBodyValue={currentYield}
-                    secondaryBodyTitle="Total(MWh)"
-                    secondaryBodyValue={totalYield}
-                  />
-                </div>
-
-                <div className="col-span-1">
-                  <InfoCard
-                    title="CO2 Reduction"
-                    primaryBodyTitle="Current Month(kg)"
-                    primaryBodyValue={getCurrentCO2Reduction()}
-                    secondaryBodyTitle="Total(kg)"
-                    secondaryBodyValue={getTotalCO2Reduction()}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <InfoCard
-                    title="Revenue"
-                    primaryBodyTitle="Current Month"
-                    primaryBodyValue={getCurrentRevenue()}
-                    secondaryBodyTitle="Cumulative Total Revenue"
-                    secondaryBodyValue={getTotalRevenue()}
-                  />
-                </div>
-              </div>
-
-              <StatisticsTableContainer
-                setStatisticsPlantsData={setStatisticsPlantsData}
-                currentTab={currentTab}
-                datePickerValue={datePickerValue}
-              />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="year">
-            <div className="space-y-5">
-              <div className="grid grid-cols-4 gap-x-2">
-                <div className="col-span-1">
-                  <InfoCard
-                    title="Yield"
-                    primaryBodyTitle="This year(kWh)"
-                    primaryBodyValue={currentYield}
-                    secondaryBodyTitle="Total(MWh)"
-                    secondaryBodyValue={totalYield}
-                  />
-                </div>
-
-                <div className="col-span-1">
-                  <InfoCard
-                    title="CO2 Reduction"
-                    primaryBodyTitle="This year(kg)"
-                    primaryBodyValue={getCurrentCO2Reduction()}
-                    secondaryBodyTitle="Total(kg)"
-                    secondaryBodyValue={getTotalCO2Reduction()}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <InfoCard
-                    title="Revenue"
-                    primaryBodyTitle="This year"
-                    primaryBodyValue={getCurrentRevenue()}
-                    secondaryBodyTitle="Cumulative Total Revenue"
-                    secondaryBodyValue={getTotalRevenue()}
-                  />
-                </div>
-              </div>
-
-              <StatisticsTableContainer
-                setStatisticsPlantsData={setStatisticsPlantsData}
-                currentTab={currentTab}
-                datePickerValue={datePickerValue}
-              />
-            </div>
-          </TabsContent>
-
-          <TabsContent value="total">
-            <div className="space-y-5">
-              <div className="grid grid-cols-4 gap-x-2">
-                <div className="col-span-1">
-                  <InfoCard
-                    title="Yield"
-                    primaryBodyTitle="Total(MWh)"
-                    primaryBodyValue={currentYield}
-                    secondaryBodyTitle=""
-                    secondaryBodyValue={""}
-                  />
-                </div>
-
-                <div className="col-span-1">
-                  <InfoCard
-                    title="CO2 Reduction"
-                    primaryBodyTitle="Total(kg)"
-                    primaryBodyValue={getTotalCO2Reduction()}
-                    secondaryBodyTitle=""
-                    secondaryBodyValue={""}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <InfoCard
-                    title="Revenue"
-                    primaryBodyTitle="Cumulative Total Revenue"
-                    primaryBodyValue={getTotalRevenue()}
-                    secondaryBodyTitle=""
-                    secondaryBodyValue={""}
-                  />
-                </div>
-              </div>
-
-              <StatisticsTableContainer
-                setStatisticsPlantsData={setStatisticsPlantsData}
-                currentTab={currentTab}
-                datePickerValue={datePickerValue}
-              />
-            </div>
-          </TabsContent> */}
-
         </CardBody>
         <CardFooter className="m-0 p-0 justify-center">
           <StatisticsTableContainer

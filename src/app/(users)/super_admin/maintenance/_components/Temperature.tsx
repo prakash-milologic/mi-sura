@@ -9,10 +9,11 @@ interface TemperatureBarProps {
 const TemperatureBar: React.FC<TemperatureBarProps> = ({ value, min, max }) => {
   const [animatedHeight, setAnimatedHeight] = useState(0);
 
-  // Normalize the value to be between 20% and 80%
-  const minHeight = 20;
-  const maxHeight = 80;
+  // Normalize the value to be between the minHeight and maxHeight percentages
+  const minHeight = 20; // Minimum height percentage (20%)
+  const maxHeight = 80; // Maximum height percentage (80%)
   const heightPercentage = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+
 
 
   useEffect(() => {
@@ -20,26 +21,34 @@ const TemperatureBar: React.FC<TemperatureBarProps> = ({ value, min, max }) => {
     setAnimatedHeight(heightPercentage);
   }, [value, heightPercentage]);
 
-  const isCritical = value >= 75; // Threshold for critical temperature
-  const gradient = "linear-gradient(180deg, #FFBD2A -24.54%, #FC8439 47.22%, #735FED 92.57%)"; // Color gradient
+  const gradient = "linear-gradient(#FFBD2A, #FC8439, #735FED)"; // Color gradient
 
   return (
     <div className="flex items-center jusitfy-center gap-4 m-auto">
       {/* Left Labels */}
       <div className="flex flex-col justify-between h-72 mr-4 text-gray-500 text-sm">
-        <div className="flex gap-2 items-center">
-          <span className="dark:text-[#FFFFFFCC] text-base font-normal">100°C</span> {/* Top Label */}
-          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div> {/* Top Label */}
+        <div
+          className="flex gap-2 items-center"
+        >
+          <span className="dark:text-[#FFFFFFCC] text-[#979797] text-base font-normal">100°C</span>
+          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div>
         </div>
-        <div className="flex gap-2 items-center">
-          <span className="dark:text-[#FFFFFFCC] text-base font-normal">50°C</span> {/* Top Label */}
-          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div> {/* Top Label */}
+        <div
+          className="flex gap-2 items-center"
+        >
+          <span className="dark:text-[#FFFFFFCC] text-[#979797] text-base font-normal">50°C</span>
+          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div>
         </div>
-        <div className="flex gap-2 items-center">
-          <span className="dark:text-[#FFFFFFCC] text-base font-normal">0°C</span> {/* Top Label */}
-          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div> {/* Top Label */}
+        <div
+          className="flex gap-2 items-center"
+        >
+          <span className="dark:text-[#FFFFFFCC] text-[#979797] text-base font-normal">0°C</span>
+          <div className="w-[42px] h-[1px] bg-[#17171733] dark:bg-[#FFFFFF33]"></div>
         </div>
       </div>
+      {/* Left Labels */}
+
+
 
       {/* Progress Bar */}
       <div className="relative flex flex-col justify-end w-8 h-72 bg-gray-200 rounded-full overflow-hidden">
@@ -52,7 +61,6 @@ const TemperatureBar: React.FC<TemperatureBarProps> = ({ value, min, max }) => {
           }}
         ></div>
       </div>
-
     </div>
   );
 };

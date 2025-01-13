@@ -39,6 +39,8 @@ export default function ChartRevenue({
   api?: string;
 }) {
   const { theme } = useTheme();
+  const isDarkTheme = theme === 'dark';
+
 
   const { data: bucketedPowerYield, isLoading: isLoadingBucketedPowerYield } =
     useQuery({
@@ -135,7 +137,7 @@ export default function ChartRevenue({
         const value = series[seriesIndex][dataPointIndex];
         return `
           <div style="padding: 10px; background: #171717; color: #fff; ">
-            <p style="font-size:12px;">${w.globals.seriesNames[seriesIndex]}: ${value} </p>
+            <p style="font-size:12px;">${w.globals.seriesNames[seriesIndex]}: ${value} ${chartType == "area" ? "kWh" : "MYR"} </p>
           </div>
         `;
       },
@@ -147,13 +149,30 @@ export default function ChartRevenue({
     // },
     yaxis: {
       decimalsInFloat: 2,
+      labels: {
+        formatter: function (value) {
+          return `${value} ${chartType == "area" ? "kWh" : "MYR"}`;
+        },
+        style: {
+          colors: isDarkTheme ? '#FFFFFFCC' : '#141414',
+        },
+      }
     },
     xaxis: {
       type: period === "daily" ? "datetime" : "category",
       labels: {
         datetimeUTC: false,
+        style: {
+          colors: isDarkTheme ? '#FFFFFFCC' : '#141414',
+        },
       },
       categories: period === "daily" ? categories : categories?.reverse(),
+      axisBorder: {
+        color: isDarkTheme ? '#FFFFFFCC' : '#141414',
+      },
+      axisTicks: {
+        color: isDarkTheme ? '#FFFFFFCC' : '#141414',
+      },
     },
     fill: {
       type: "gradient",
@@ -217,6 +236,11 @@ export default function ChartRevenue({
       size: 8, // Dot size on hover
       sizeOffset: 8, // Add padding around the dot on hover
     },
+  },
+  grid: {
+    show: true,
+    borderColor: isDarkTheme ? '#FFFFFF1A' : '#1717171A',
+    strokeDashArray: 4, // Dashed grid lines
   },
   
 

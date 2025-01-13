@@ -1,14 +1,15 @@
 import { ApexOptions } from 'apexcharts';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
-import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("react-apexcharts"), {
+import dynamic from 'next/dynamic';
+
+const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
+
 const EnergyChart = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  // Listen to screen resize
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 640); // Adjust breakpoint for "small" devices
@@ -21,19 +22,20 @@ const EnergyChart = () => {
     };
   }, []);
 
-    const { theme } = useTheme();
-  
-  const chartOptions:ApexOptions = {
+  const { theme } = useTheme();
+  const isDarkTheme = theme === 'dark';
+
+  const chartOptions: ApexOptions = {
     theme: {
-      mode: theme as "light" | "dark",
+      mode: theme as 'light' | 'dark',
     },
     chart: {
-      type: 'line' as const,
+      type: 'line',
       background: 'transparent',
       toolbar: {
         show: false,
         tools: {
-          download: false, // Disable export
+          download: false,
         },
       },
     },
@@ -52,10 +54,24 @@ const EnergyChart = () => {
         'Nov',
         'Dec',
       ],
+      labels: {
+        style: {
+          colors: isDarkTheme ? '#FFFFFFCC' : '#141414',
+        },
+      },
+      axisBorder: {
+        color: isDarkTheme ? '#FFFFFFCC' : '#141414',
+      },
+      axisTicks: {
+        color: isDarkTheme ? '#FFFFFFCC' : '#141414',
+      },
     },
     yaxis: {
       labels: {
-        formatter: (val: number) => `${val} kWh`, // Custom formatter for y-axis labels
+        formatter: (val: number) => `${val} kWh`,
+        style: {
+          colors: isDarkTheme ? '#FFFFFFCC' : '#141414',
+        },
       },
     },
     tooltip: {
@@ -73,18 +89,26 @@ const EnergyChart = () => {
       position: 'bottom',
       horizontalAlign: 'center',
       itemMargin: {
-        horizontal: 24, // Gap between legend items
-        vertical:isSmallScreen ? 10 : 20,
+        horizontal: 24,
+        vertical: isSmallScreen ? 10 : 20,
+      },
+      labels: {
+        colors: isDarkTheme ? '#FFFFFFCC' : '#141414',
       },
       markers: {
         width: 16,
         height: 16,
-        radius: 4, // Border-radius for markers
+        radius: 4,
       },
     },
     stroke: {
-      curve: 'smooth', // Smooth line curves
+      curve: 'smooth',
       width: 1.5,
+    },
+    grid: {
+      show: true,
+      borderColor: isDarkTheme ? '#FFFFFF1A' : '#1717171A',
+      strokeDashArray: 4, // Dashed grid lines
     },
   };
 
@@ -108,9 +132,8 @@ const EnergyChart = () => {
   ]);
 
   return (
-    <div className="sm:pb-10 h-full">{/* Add extra height to the container */}
-      <Chart options={chartOptions} series={chartSeries} type="line" width={"100%"}
-        height={"100%"} />
+    <div className="sm:pb-10 h-full">
+      <Chart options={chartOptions} series={chartSeries} type="line" width="100%" height="100%" />
     </div>
   );
 };
