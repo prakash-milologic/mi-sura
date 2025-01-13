@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+
 // import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
@@ -12,6 +10,8 @@ import { useTheme } from "next-themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { addHours, format as formatDateFns } from "date-fns";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 
 function fetchBucketedPowerYield({
   period,
