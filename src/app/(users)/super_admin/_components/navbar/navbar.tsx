@@ -22,7 +22,11 @@ export const NavbarWrapper = ({ children }: Props) => {
   const [isDashboard, setIsDashboard] = React.useState(false);
   const { theme, resolvedTheme } = useTheme(); // Use resolvedTheme for fallback
   const pathname = usePathname();
-  const lastPath = capitalizeFirstLetter(pathname.split("/").pop() as string);
+  let path = pathname.split("/").pop();
+  if(!isNaN(Number(path))) {
+    path = pathname.split("/").splice(-2,1)[0];
+  }
+  const lastPath = capitalizeFirstLetter(path as string);
  const {  setCollapsed } = useSidebarContext();
   const [mounted, setMounted] = React.useState(false);
 

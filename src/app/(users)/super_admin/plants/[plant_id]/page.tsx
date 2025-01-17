@@ -101,7 +101,7 @@ export default function PlantIdPage({
           ],
         }}
         >
-          <BreadcrumbItem>Plants</BreadcrumbItem>
+          <BreadcrumbItem href="/super_admin/plants" >Plants</BreadcrumbItem>
           <BreadcrumbItem >{plantData?.data?.[0]?.name}</BreadcrumbItem>
         </Breadcrumbs>
         </div>
