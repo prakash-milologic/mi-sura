@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-
+const Chart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 // import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import colors from "tailwindcss/colors";
@@ -10,8 +12,6 @@ import { useTheme } from "next-themes";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { addHours, format as formatDateFns } from "date-fns";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-
 
 function fetchBucketedPowerYield({
   period,
@@ -23,10 +23,14 @@ function fetchBucketedPowerYield({
 
 function fetchRevenueStatistics({
   period,
+  api = ""
 }: {
   period: "live" | "daily" | "monthly" | "yearly";
+  api?: string;
 }) {
-  return axios.get(`/api/tsdb/revenue_statistics?period=${period}`);
+  let url = api ? `${api}?period=${period}` : `/api/tsdb/revenue_statistics?period=${period}`;
+  console.log(url,"get api rul=================");
+  return axios.get(url);
 }
 
 export default function ChartRevenue({
@@ -44,8 +48,8 @@ export default function ChartRevenue({
 
   const { data: bucketedPowerYield, isLoading: isLoadingBucketedPowerYield } =
     useQuery({
-      queryKey: ["revenue_statistics", period],
-      queryFn: () => fetchRevenueStatistics({ period }),
+      queryKey: [api ? `${api}` : "revenue_statistics", period],
+      queryFn: () => fetchRevenueStatistics({api, period }),
       refetchInterval: 30000,
     });
 
@@ -242,8 +246,6 @@ export default function ChartRevenue({
     borderColor: isDarkTheme ? '#FFFFFF1A' : '#1717171A',
     strokeDashArray: 4, // Dashed grid lines
   },
-  
-
     noData: {
       text: "N/A",
     },

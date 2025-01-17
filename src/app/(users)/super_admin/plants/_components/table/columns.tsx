@@ -15,32 +15,11 @@ import {
 import Link from "next/link";
 import TrendChart from "./trend-chart";
 import { cn } from "@/lib/utils";
+import { ArrowDown, ArrowDownNarrowWideIcon, ChevronDown, EyeIcon } from "lucide-react";
+import { DownArrow } from "@/app/assets/SVGCollection";
 
 export const columns: ColumnDef<IPlant>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="translate-y-[2px]"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="translate-y-[2px]"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+
   {
     accessorKey: "name",
     header: ({ column }) => (
@@ -53,11 +32,11 @@ export const columns: ColumnDef<IPlant>[] = [
   {
     accessorKey: "isAlert",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Alerts" />
+      <DataTableColumnHeader column={column} title="ALERTS" />
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 justify-center">
           {row.original.isAlert == undefined ? (
             <MinusCircledIcon />
           ) : row.original.isAlert ? (
@@ -68,82 +47,91 @@ export const columns: ColumnDef<IPlant>[] = [
         </div>
       );
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "capacity",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Capacity" />
+      <DataTableColumnHeader column={column} title="Capacity (KWP)" />
     ),
     cell: ({ row }) => <div>{row.getValue("capacity")}kWp</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "production",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Production" />
+      <DataTableColumnHeader column={column} title="PRODUCTION" />
     ),
     cell: ({ row }) => <div>{row.getValue("production")}kW</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "power",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Power" />
+      <DataTableColumnHeader column={column} title="POWER" />
     ),
     cell: ({ row }) => <div>{row.getValue("power")}%</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "dailyProduction",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Daily Production" />
+      <DataTableColumnHeader column={column} title="DAILY PRODUCTION" />
     ),
     cell: ({ row }) => <div>{row.getValue("dailyProduction")}kWh</div>,
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
+    enableHiding: false,
   },
   {
     accessorKey: "trend",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Trend" />
+      <DataTableColumnHeader column={column} title="TREND" />
     ),
     cell: ({ row }) => (
-      <div className="h-10 w-10">
-        <TrendChart trend={row.original.trend} />
+      <div>
+        N/A
       </div>
+      // <div className="h-5 w-10 ">
+      //   <TrendChart trend={row.original.trend} />
+      // </div>
     ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
     },
+    enableSorting: false,
+    enableHiding: false,
   },
-  // {
-  //   accessorKey: "peakHoursToday",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Peak Hours Today" />
-  //   ),
-  //   cell: ({ row }) => <div>{row.getValue("peakHoursToday")}h</div>,
-  //   filterFn: (row, id, value) => {
-  //     return value.includes(row.getValue(id));
-  //   },
-  // },
   {
     id: "actions",
     cell: ({ row }) => (
-      <Link
-        className={cn({
-          "pointer-events-none opacity-40": !row.original.trend,
-        })}
-        href={`/super_admin/plants/${row.original.id}`}
-      >
-        View
-      </Link>
+      <div className="flex justify-center items-center gap-2">
+        <div className="px-[20px] py-[10px] dark:border-[#FFFFFF33] dark:text-white border rounded-lg hover:bg-gray-200 dark:hover:bg-[#FFFFFF33]">
+          <Link
+            className={cn({
+              "pointer-events-none opacity-40": !row.original.trend,
+            })}
+            href={`/super_admin/plants/${row.original.id}`}
+          >
+            View
+          </Link>
+        </div>
+      </div>
     ),
   },
   // {

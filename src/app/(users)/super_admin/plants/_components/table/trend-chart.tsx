@@ -56,7 +56,7 @@ export default function TrendChart({ trend }: { trend: any[] | null }) {
       categories,
     },
     noData: {
-      offsetY: -10,
+      // offsetY: -10,
       align: "center",
       text: "N/A",
     },

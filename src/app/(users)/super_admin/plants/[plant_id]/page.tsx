@@ -10,6 +10,7 @@ import PlantContent from "./components/plant-content";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { notFound } from "next/navigation";
+import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 function fetchDailyInverterData() {
   return axios.get(`/api/tsdb/daily_inverter_data`);
@@ -18,6 +19,7 @@ function fetchDailyInverterData() {
 function fetchPlantData(id: string) {
   return axios.get(`/api/tsdb/plant_data/${id}`);
 }
+const radius:string[] = ["full", "lg", "md", "sm", "none"];
 
 export default function PlantIdPage({
   params,
@@ -89,9 +91,23 @@ export default function PlantIdPage({
   // }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold">{plantData?.data?.[0]?.name}</h1>
-      <div className="flex items-center space-x-2 mb-1">{/* <Alert /> */}</div>
+    <div className="bg-[#EFF4F8] pt-2 md:pt-6 px-8 dark:bg-[#0B0A08]">
+     <div className="flex flex-col flex-wrap gap-4 text-xl font-semibold">
+        <Breadcrumbs
+         itemClasses={{
+          item: [
+            "data-[current=true]:text-[#171717] dark:data-[current=true]:text-[#FFFFFF]",
+            "data-[disabled=true]:text-[#686868] dark:data-[disabled=true]:text-[#686868]",
+          ],
+        }}
+        >
+          <BreadcrumbItem>Plants</BreadcrumbItem>
+          <BreadcrumbItem >{plantData?.data?.[0]?.name}</BreadcrumbItem>
+        </Breadcrumbs>
+        </div>
+        
+      {/* <h1 className="text-3xl font-bold">{plantData?.data?.[0]?.name}</h1> */}
+      {/* <div className="flex items-center space-x-2 mb-1"> <Alert /></div> */}
       <PlantContent data={plantData?.data} />
     </div>
   );

@@ -1,31 +1,42 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ApexOptions } from "apexcharts";
+import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
-import { ApexOptions } from "apexcharts";
-import colors from "tailwindcss/colors";
-import { generateRandomArray } from "@/lib/utils";
-import { useTheme } from "next-themes";
 
 export default function CarbonFootrpintChart({
   openValue,
   closedValue,
   openValueLabel,
   closedValueLabel,
+  isPlant = false
 }: // inprogressValue,
 {
   openValue: number;
   closedValue: number;
   openValueLabel: string;
   closedValueLabel: string;
+  isPlant?:boolean;
   // inprogressValue: number;
 }) {
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
-
-
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsSmallScreen(window.innerWidth <= 1280  ); // Adjust breakpoint for "small" devices
+      };
+      handleResize(); // Check on component mount
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
   const series: ApexNonAxisChartSeries = [
     openValue,
@@ -42,13 +53,25 @@ export default function CarbonFootrpintChart({
         show: false,
       },
     },
+    dataLabels: {
+      enabled: false,
+    },
     labels: [openValueLabel, closedValueLabel],
     legend: {
       show: true,
       position: "bottom",
+      horizontalAlign: isPlant && !isSmallScreen ? "left": "center",
       onItemClick: {
         toggleDataSeries: false,
       },
+      markers:{
+        width: 14,
+        height: 14,
+        radius: 4,
+      },
+      itemMargin:{
+        horizontal:12
+      }
     },
     colors: [ '#00A38C','#00E397'],
     plotOptions: {

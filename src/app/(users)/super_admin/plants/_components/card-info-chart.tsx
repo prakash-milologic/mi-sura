@@ -42,7 +42,7 @@ export default function CardInfoChart({
 
   function getSeries() {
     if (activeValue || faultValue || inactiveValue) {
-      return [activeValue, faultValue, inactiveValue];
+      return [activeValue,  inactiveValue, faultValue];
     }
     return [];
   }
@@ -58,60 +58,63 @@ export default function CardInfoChart({
       toolbar: {
         show: false,
       },
-      // sparkline: {
-      //   enabled: true,
-      // },
+      zoom: {
+        enabled: false,
+      }
     },
-    labels: ["Active", "Fault", "Inactive"],
+    dataLabels: {
+      enabled: false,
+    },
+    labels: ["Active", "Inactive", "Faulty"],
     legend: {
-      show: false,
+      show: true,
+      position: "bottom",
+      onItemClick: {
+        toggleDataSeries: false,
+      },
+      markers:{
+        width: 14,
+        height: 14,
+        radius: 4,
+      },
+      itemMargin:{
+        horizontal:12
+      }
     },
-    colors: [colors.green[400], colors.red[400], colors.gray[400]],
-    // dataLabels: {
-    //   enabled: false,
-    //   // offsetY: -20,
-
-    //   // style: {
-    //   //   colors: [theme === "light" ? colors.black : colors.white],
-    //   // },
-    // },
+    colors: [ '#3FC43A','#C5C5C5','#FF493F'],
     plotOptions: {
       pie: {
         donut: {
-          size: "50%",
+          size: "65%",
         },
       },
-      // bar: {
-      //   borderRadius: 5,
-      //   columnWidth: "50%",
-      //   // dataLabels: {
-      //   //   position: "top", // top, center, bottom
-      //   // },
-      // },
     },
-    stroke: {
-      //   curve: "smooth",
-    },
-    // grid: {
-    //   show: false,
-    // },
-    // yaxis: {
-    //   min: 30,
-    //   max: 100,
-    //   //   decimalsInFloat: 0,
-    //   //   title: {
-    //   //     text: "kW",
-    //   //   },
-    //   forceNiceScale: true,
-    // },
-    // xaxis: {
-    //   type: "category",
-    //   categories: consecutiveNumbersArray,
-    // },
+    tooltip: {
+        enabled: true,
+        custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+          const value = series[seriesIndex];
+          const label = w.globals.labels[seriesIndex];
+          const total = series.reduce((acc:number, curr:number) => acc + curr, 0);
+          const percentage = total ? ((value / total) * 100).toFixed(2) : 0;
+          return `
+            <div style="
+              background: #171717; 
+              color: #fff; 
+              padding: 8px;
+              font-size: 12px;
+              text-align: center;
+            ">
+              <p>${label}:  ${percentage}%</p>
+            </div>
+          `;
+        },
+      },
+
     noData: {
       text: "N/A",
     },
   };
+
 
   return (
     <div className="h-full">

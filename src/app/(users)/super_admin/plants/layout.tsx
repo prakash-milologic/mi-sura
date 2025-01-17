@@ -7,7 +7,7 @@ export default async function SuperAdminPlantsLayout({
 }) {
   return (
     <div className=" bg-white dark:bg-black w-full h-full">
-      <Header title="Plants" />
+      {/* <Header title="Plants" /> */}
       {children}
     </div>
   );

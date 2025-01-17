@@ -1,8 +1,8 @@
+"use client";
+import React from "react";
 import {
   ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
+  ChevronRightIcon
 } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
@@ -22,26 +22,28 @@ interface DataTablePaginationProps<TData> {
 export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
+  const pageIndex = table.getState().pagination.pageIndex;
+  const pageCount = table.getPageCount();
+  const visiblePages = 5; // Number of page numbers to display
+  const startPage = Math.max(1, pageIndex - Math.floor(visiblePages / 2));
+  const endPage = Math.min(pageCount, startPage + visiblePages - 1);
+  const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
   return (
-    <div className="flex items-baseline justify-between px-2">
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
-      <div className="flex flex-col sm:flex-row items-end sm:items-center space-x-6 lg:space-x-8">
+    <div className="flex items-center justify-between p-6">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+          <p className="text-xs md:text-sm font-normal text-[#686868]">Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
             }}
           >
-            <SelectTrigger className="h-8 w-[70px]">
+            <SelectTrigger className="h-6 w-[60px] md:h-10 md:w-[72px] bg-[#F4F5F7] focus:outline-none outline-none focus:ring-0 dark:bg-[#43434A] dark:text-white">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 20, 30, 40, 50].map((pageSize) => (
+              {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>
@@ -49,49 +51,53 @@ export function DataTablePagination<TData>({
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </div>
+
         <div className="flex items-center space-x-2">
-          <Button
+          {/* <Button
             variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
+            className="h-8 w-8 p-0"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
             <DoubleArrowLeftIcon className="h-4 w-4" />
-          </Button>
+          </Button> */}
           <Button
             variant="outline"
-            className="h-8 w-8 p-0"
+            className="h-6 w-6 md:h-8 md:w-8 p-0 dark:bg-transparent dark:border-[#FFFFFF1A]"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>
+          {pages.map((page) => (
+            <Button
+              key={page}
+              variant={pageIndex + 1 === page ? "default" : "outline"}
+              className={`h-6 w-6 md:h-8 md:w-8 p-0 ${
+                pageIndex + 1 === page ? "bg-green-500 text-white" : " bg-white border border-gray-300 text-[#171717] dark:bg-transparent dark:border-[#FFFFFF1A] dark:text-[#FFFFFFBF]"
+              }`}
+              onClick={() => table.setPageIndex(page - 1)}
+            >
+              {page}
+            </Button>
+          ))}
           <Button
             variant="outline"
-            className="h-8 w-8 p-0"
+            className="h-6 w-6 md:h-8 md:w-8 p-0 dark:bg-transparent dark:border-[#FFFFFF1A] dark:text-[#FFFFFFBF]"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
             <ChevronRightIcon className="h-4 w-4" />
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            className="h-8 w-8 p-0"
+            onClick={() => table.setPageIndex(pageCount - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
             <DoubleArrowRightIcon className="h-4 w-4" />
-          </Button>
+          </Button> */}
         </div>
       </div>
-    </div>
   );
 }

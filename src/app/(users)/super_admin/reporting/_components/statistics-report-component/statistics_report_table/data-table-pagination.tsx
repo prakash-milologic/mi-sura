@@ -1,8 +1,8 @@
+"use client";
+import React from "react";
 import {
   ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
+  ChevronRightIcon
 } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 

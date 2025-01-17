@@ -13,11 +13,13 @@ export default function CardLayout({
   content,
   className,
   children,
+  hidePadding = false,
 }: {
   title: string;
   content?: string;
   children: React.ReactNode;
   className?: string;
+  hidePadding?: boolean;
 
 } & CardProps) {
   return (
@@ -26,7 +28,7 @@ export default function CardLayout({
         <p className=" lg:text-xl text-lg  font-semibold text-black rounded-2xl dark:text-white">{title}</p>
         <p className="text-xs font-normal text-[#171717BF] rounded-2xl dark:text-[#FFFFFFBF] ">{content??""}</p>
       </CardHeader>
-      <CardBody className="p-6">
+      <CardBody className={hidePadding ? 'p-4': 'p-6'}>
             {children}
       </CardBody>
     </Card>

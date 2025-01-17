@@ -1,11 +1,9 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
-import { DataTable } from "./table/data-table";
-import { plants } from "@/lib/data";
-import { columns } from "./table/columns";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { columns } from "./table/columns";
+import { DataTable } from "./table/data-table";
 
 function fetchPlantsData() {
   return axios.get(`/api/tsdb/plants_list`);
@@ -32,20 +30,13 @@ export default function TableContainer() {
   if (isLoadingPlantsList) {
     return <div>Loading...</div>;
   }
+  const getColumnsId = (id: string) => {
+
+  }
 
   return (
-    <div>
-      <Tabs defaultValue="commercial" className="space-y-5">
-        <TabsList className="grid grid-cols-1 w-fit">
-          <TabsTrigger value="commercial" className="truncate justify-start">
-            Commercial & Residential
-          </TabsTrigger>
-          {/* <TabsTrigger value="utility">Utility</TabsTrigger> */}
-        </TabsList>
-        <TabsContent value="commercial">
+    <div className="bg-white dark: dark:bg-[#262629] mt-6  rounded-2xl">
           <DataTable data={plantsData} columns={columns} />
-        </TabsContent>
-      </Tabs>
     </div>
   );
 }
