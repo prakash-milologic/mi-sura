@@ -14,29 +14,31 @@ export default function CarbonFootrpintChart({
   closedValueLabel,
   isPlant = false
 }: // inprogressValue,
-{
-  openValue: number;
-  closedValue: number;
-  openValueLabel: string;
-  closedValueLabel: string;
-  isPlant?:boolean;
-  // inprogressValue: number;
-}) {
+  {
+    openValue: number;
+    closedValue: number;
+    openValueLabel: string;
+    closedValueLabel: string;
+    isPlant?: boolean;
+    // inprogressValue: number;
+  }) {
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
-  
-    useEffect(() => {
-      const handleResize = () => {
-        setIsSmallScreen(window.innerWidth <= 1280  ); // Adjust breakpoint for "small" devices
-      };
-      handleResize(); // Check on component mount
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 1280); // Adjust breakpoint for "small" devices
+      setIsLargeScreen(window.innerWidth >= 1536); // Adjust breakpoint for "small" devices
+    };
+    handleResize(); // Check on component mount
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const series: ApexNonAxisChartSeries = [
     openValue,
@@ -60,20 +62,24 @@ export default function CarbonFootrpintChart({
     legend: {
       show: true,
       position: "bottom",
-      horizontalAlign: isPlant && !isSmallScreen ? "left": "center",
+      horizontalAlign: isPlant && !isSmallScreen && !isLargeScreen ? "left" : "center",
       onItemClick: {
         toggleDataSeries: false,
       },
-      markers:{
+      markers: {
         width: 14,
         height: 14,
         radius: 4,
       },
-      itemMargin:{
-        horizontal:12
+      itemMargin: {
+        horizontal: 12
       }
     },
-    colors: [ '#00A38C','#00E397'],
+    stroke: {
+      width: 3, // Adds space between slices
+      colors: [theme === "dark" ? "#262629" : "#ffffff"], // Matches background for better spacing effect
+    },
+    colors: ['#00A38C', '#00E397'],
     plotOptions: {
       pie: {
         donut: {
@@ -82,11 +88,11 @@ export default function CarbonFootrpintChart({
       },
     },
     tooltip: {
-        enabled: true,
-        custom: ({ series, seriesIndex, dataPointIndex, w }) => {
-          const value = series[seriesIndex];
-          const label = w.globals.labels[seriesIndex];
-          return `
+      enabled: true,
+      custom: ({ series, seriesIndex, dataPointIndex, w }) => {
+        const value = series[seriesIndex];
+        const label = w.globals.labels[seriesIndex];
+        return `
             <div style="
               background: #171717; 
               color: #fff; 
@@ -97,8 +103,8 @@ export default function CarbonFootrpintChart({
               <p>${currentYear} ${label}: ${value}</p>
             </div>
           `;
-        },
       },
+    },
 
     noData: {
       text: "N/A",

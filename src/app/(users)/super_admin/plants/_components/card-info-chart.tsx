@@ -89,6 +89,10 @@ export default function CardInfoChart({
         },
       },
     },
+    stroke: {
+      width: 3, // Adds space between slices
+      colors: [theme === "dark" ? "#262629" : "#ffffff"], // Matches background for better spacing effect
+    },
     tooltip: {
         enabled: true,
         custom: ({ series, seriesIndex, dataPointIndex, w }) => {

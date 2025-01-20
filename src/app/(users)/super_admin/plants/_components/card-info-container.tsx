@@ -20,7 +20,7 @@ export default function CardInfoContainer() {
   return (
     <div className="grid sm:grid-cols-2 gap-5">
       <CardLayout title="Plant Overview" className="rounded-2xl dark:bg-[#262629]" >
-        <div className="h-[200px] lg:h-[260px]">
+        <div className="h-[200px] lg:h-[260px] 2xl:h-[300px]">
           <CardInfoChart
             activeValue={10}
             faultValue={Number(5)}
@@ -29,7 +29,7 @@ export default function CardInfoContainer() {
         </div>
       </CardLayout>
       <CardLayout title="Device Overview" className="rounded-2xl dark:bg-[#262629]" >
-        <div className="h-[200px] lg:h-[260px]">
+        <div className="h-[200px] lg:h-[260px] 2xl:h-[300px]">
           <CardInfoChart
             activeValue={12}
             faultValue={Number(10)}

@@ -99,7 +99,7 @@ export function DataTable<TData, TValue>({
             </div>
           </form>
         </div>
-      <div className="w-[77.6vw] m-auto overflow-x-auto">
+      <div className="w-[77.6vw] lg:w-full m-auto overflow-x-auto">
       
         <Table className="w-full">
           <TableHeader className="sticky top-0 bg-secondary z-10 dark:bg-[#43434A]">

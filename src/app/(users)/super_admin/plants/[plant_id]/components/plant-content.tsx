@@ -139,10 +139,10 @@ export default function PlantContent({ data }: { data: any[] }) {
               ))
             }
           </div>
-          <CardLayout hidePadding={true} title="Production" className="rounded-2xl dark:bg-[#262629]  mt-6   justify-center items-center h-fit max-h-[500px] " >
+          <CardLayout hidePadding={true} title="Device Metrics" className="rounded-2xl dark:bg-[#262629]  mt-6   justify-center items-center h-fit max-h-[500px] " >
             <div className="grid grid-cols-1  gap-2">
 
-              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit ">
+              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit  xl:w-full xl:justify-around">
                 <div className="flex flex-col gap-2  justify-center">
                   <p className="text-xl font-semibold text-[#171717] dark:text-white">Sungrow3</p>
                   <div className="flex  gap-2 items-center justify-start text-[#3FC43A]">
@@ -169,7 +169,7 @@ export default function PlantContent({ data }: { data: any[] }) {
                 </div>
 
               </div>
-              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit ">
+              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit  xl:w-full xl:justify-around">
                 <div className="flex flex-col gap-2  justify-center">
                   <p className="text-xl font-semibold text-[#171717] dark:text-white">Sungrow3</p>
                   <div className="flex  gap-2 items-center justify-start text-[#3FC43A]">
@@ -196,7 +196,7 @@ export default function PlantContent({ data }: { data: any[] }) {
                 </div>
 
               </div>
-              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit ">
+              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit  xl:w-full xl:justify-around">
                 <div className="flex flex-col gap-2  justify-center">
                   <p className="text-xl font-semibold text-[#171717] dark:text-white">Sungrow3</p>
                   <div className="flex  gap-2 items-center justify-start text-[#3FC43A]">
@@ -223,7 +223,7 @@ export default function PlantContent({ data }: { data: any[] }) {
                 </div>
 
               </div>
-              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit ">
+              <div className="flex gap-4 p-4 bg-[#0098480D] dark:bg-[#3FC43A14] rounded-xl w-fit  xl:w-full xl:justify-around">
                 <div className="flex flex-col gap-2  justify-center">
                   <p className="text-xl font-semibold text-[#171717] dark:text-white">Sungrow3</p>
                   <div className="flex  gap-2 items-center justify-start text-[#3FC43A]">

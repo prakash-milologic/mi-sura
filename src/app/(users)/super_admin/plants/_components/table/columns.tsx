@@ -23,7 +23,7 @@ export const columns: ColumnDef<IPlant>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Name" />
+      <DataTableColumnHeader column={column} title="PLANT" />
     ),
     cell: ({ row }) => <div>{row.getValue("name")}</div>,
     enableSorting: false,
@@ -42,7 +42,7 @@ export const columns: ColumnDef<IPlant>[] = [
           ) : row.original.isAlert ? (
             <ExclamationTriangleIcon color="yellow" />
           ) : (
-            <CheckCircledIcon color="green" />
+            <CheckCircledIcon color="#3FC43A" />
           )}
         </div>
       );
